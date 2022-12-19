@@ -1,0 +1,29 @@
+<!-- HTML template for the file upload form -->
+<form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+  </form>
+  
+  <!-- JavaScript for handling file uploads -->
+  <script>
+    // Get the upload form
+    const form = document.getElementById('upload-form');
+  
+    // Handle form submissions
+    form.addEventListener('submit', (e) => {
+      // Prevent the default form submission behavior
+      e.preventDefault();
+  
+      // Send a POST request to the server with the file attached
+      const formData = new FormData(form);
+      fetch('/upload', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.json())
+        .then((data) => {
+          console.log(data.message);
+        });
+    });
+  </
+  
